@@ -4,6 +4,7 @@ import {
   IonApp,
   IonIcon,
   IonLabel,
+  IonPage,
   IonRouterOutlet,
   IonTabBar,
   IonTabButton,
@@ -38,7 +39,6 @@ const App: React.FC = () => {
   console.log('app');
   return (
   <IonApp>
-    <Button/>
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>

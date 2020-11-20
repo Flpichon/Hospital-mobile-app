@@ -6,25 +6,28 @@ import './list.containers.css';
 const List: React.FC = () => { 
 const [nom, setNom] = useState('');
 const [prenom, setPrenom] = useState('');
+const [items, setItems] = useState([]);
+
   useEffect(() => {
-    async function fetchData() {
-      const data = await  axios({
+    const fetchData = async() => {
+      let data = await  axios({
         url: '/employes',
         method: 'get',
       });
-      setNom(data.data[0].nom);
-      setPrenom(data.data[0].prenom);
-      console.log(data);
+      const fetched = data.data;
+      const itemsToDisplays = fetched.map((data: any) => 
+        <Item key={data.nom} nom={data.nom} prenom={data.prenom}/>
+      )
+      setItems(itemsToDisplays);
     };
-
     fetchData();
-  });
+  }, []);
   
   return(
   <IonContent>
     <IonList>
-        <Item nom={nom} prenom={prenom}/>
+      {items}
     </IonList>
-</IonContent> )};
+  </IonContent> )};
 
 export {List}
